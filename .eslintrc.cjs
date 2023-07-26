@@ -14,14 +14,6 @@ module.exports = {
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint', 'react-refresh'],
-  // settings: {
-  //   'import/resolver': {
-  //     alias: {
-  //       map: [['@', './src']],
-  //       extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
-  //     },
-  //   },
-  // },
   rules: {
     'react-refresh/only-export-components': [
       'warn',
@@ -31,5 +23,12 @@ module.exports = {
     'comma-dangle': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/button-has-type': 'off',
+    'react/function-component-definition': 'off',
+    'linebreak-style': 'off',
+    'arrow-body-style': 'off',
+    'import/no-unresolved': 'off',
+    'import/extensions': 'off',
+    'no-restricted-exports': 'off',
+    'import/no-extraneous-dependencies': 'off',
   },
 };

@@ -30,5 +30,8 @@ module.exports = {
     'import/extensions': 'off',
     'no-restricted-exports': 'off',
     'import/no-extraneous-dependencies': 'off',
+    'object-curly-newline': 'off',
+    'arrow-parens': 'off',
+    'implicit-arrow-linebreak': 'off',
   },
 };

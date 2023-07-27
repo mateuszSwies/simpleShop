@@ -6,7 +6,7 @@ import useStore from '@/store/shoppingCartStore';
 const ShoppingCartIcon = () => {
   const navigate = useNavigate();
   const toast = useToast();
-  const { numberOfProduct } = useStore();
+  const { numberOfProducts } = useStore();
 
   const handleOnCartClick = () => {
     navigate('/cart');
@@ -44,7 +44,7 @@ const ShoppingCartIcon = () => {
         bgColor="red.500"
         color="white"
       >
-        {numberOfProduct}
+        {numberOfProducts}
       </Badge>
     </Box>
   );

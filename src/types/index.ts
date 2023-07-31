@@ -15,3 +15,10 @@ export type ShoppingCart = {
   items: Product[];
   totalValue: number;
 };
+
+export type User = {
+  id: string;
+  name: string;
+  avatar: string;
+  purchasesMade: number;
+};

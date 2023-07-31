@@ -2,14 +2,14 @@
 import { create } from 'zustand';
 import { Product, ShoppingCart } from '@/types';
 
-type Store = {
+type ShoppingCartStore = {
   numberOfProducts: number;
   shoppingCart: ShoppingCart;
   addToCart: (item: Product) => void;
   removeFromCart: (item: Product) => void;
 };
 
-const useStore = create<Store>()(set => ({
+const useShoppingCartStore = create<ShoppingCartStore>()(set => ({
   numberOfProducts: 0,
   shoppingCart: {
     items: [],
@@ -47,4 +47,4 @@ const useStore = create<Store>()(set => ({
     }),
 }));
 
-export default useStore;
+export default useShoppingCartStore;

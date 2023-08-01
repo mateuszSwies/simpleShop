@@ -5,7 +5,7 @@ export type Product = {
   label: string;
   value: string;
   price: number;
-  image: ImageProps;
+  image?: ImageProps;
   description: string;
   highlighted?: boolean;
   discounted?: boolean;

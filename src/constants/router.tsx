@@ -4,6 +4,7 @@ import Layout from '@/layout/Layout';
 import Home from '@/screens/Home';
 import Profile from '@/screens/Profile';
 import RegistrationForm from '@/components/RegistrationForm';
+import Shop from '@/screens/Shop';
 
 const router = createBrowserRouter([
   {
@@ -37,7 +38,7 @@ const router = createBrowserRouter([
     path: '/shop',
     element: (
       <Layout>
-        <div>shop</div>
+        <Shop />
       </Layout>
     ),
     errorElement: <ErrorPage />,

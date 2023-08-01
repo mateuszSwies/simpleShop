@@ -7,7 +7,7 @@ const Profile = () => {
 
   return (
     <Flex w="100%" h="100%" justify="center" align="center" pt="20vh">
-      {isLoggedIn ? <Text>zalogowany</Text> : <LoginInput />}
+      {isLoggedIn ? <Text>logged in</Text> : <LoginInput />}
     </Flex>
   );
 };

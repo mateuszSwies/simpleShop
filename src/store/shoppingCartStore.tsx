@@ -17,7 +17,7 @@ const useShoppingCartStore = create<ShoppingCartStore>()(set => ({
   },
   addToCart: item =>
     set(state => ({
-      numberOfProduct: state.numberOfProducts + 1,
+      numberOfProducts: state.numberOfProducts + 1,
       shoppingCart: {
         items: [...state.shoppingCart.items, item],
         totalValue: state.shoppingCart.totalValue + item.price,

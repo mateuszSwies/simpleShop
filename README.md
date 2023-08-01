@@ -6,15 +6,17 @@ Welcome to **My Simple Shop**! This is a modern web application built with cutti
 
 1. **React** - A powerful and popular JavaScript library for building user interfaces, ensuring a seamless and interactive shopping journey.
 
-2. **React Router** - With the latest version (v6), we've implemented smooth navigation and routing for faster page transitions.
+2. **React Router** - With the latest version (v6), I've implemented smooth navigation and routing for faster page transitions.
 
 3. **Chakra UI** - A highly customizable and accessible UI component library that makes the app look stunning and user-friendly.
 
-4. **Framer Motion** - We've added delightful animations to make your shopping experience even more engaging.
+4. **Zustand** - A state management library that ensures the app runs smoothly and efficiently.
 
-5. **Zustand** - A state management library that ensures the app runs smoothly and efficiently.
+5. **Vite** - A fast and lightweight build tool that optimizes the development workflow for better performance.
 
-6. **Vite** - A fast and lightweight build tool that optimizes the development workflow for better performance.
+6. **Framer Motion** - I've added delightful animations to make your shopping experience even more engaging.
+
+7. **Zod** - I've also used Zod for data schema validation, ensuring that the data in my app is accurate and reliable.
 
 ## Getting Started
 

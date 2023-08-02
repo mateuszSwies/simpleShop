@@ -33,5 +33,6 @@ module.exports = {
     'object-curly-newline': 'off',
     'arrow-parens': 'off',
     'implicit-arrow-linebreak': 'off',
+    'operator-linebreak': 'off',
   },
 };

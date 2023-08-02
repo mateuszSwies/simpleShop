@@ -9,8 +9,9 @@ import {
   Text,
   InputGroup,
   InputRightElement,
+  useToast,
 } from '@chakra-ui/react';
-import { object, string, ZodError } from 'zod'; // Dodaliśmy import 'ZodError'
+import { object, string, ZodError } from 'zod';
 
 const registrationSchema = object({
   firstName: string().nonempty('Required field.'),
@@ -45,6 +46,7 @@ const RegistrationForm = () => {
     confirmPassword: '',
     phoneNumber: '',
   });
+  const toast = useToast();
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -65,7 +67,16 @@ const RegistrationForm = () => {
     try {
       registrationSchema.parse(formData);
       setErrors(initialFormData);
+      toast({
+        title: 'Success!!',
+        description: 'Your account has been created.',
+        status: 'success',
+        duration: 4000,
+        isClosable: true,
+      });
+      setFormData(initialFormData);
       // TODO: send data to store or storage or BE
+
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       if (err instanceof ZodError && err.formErrors) {

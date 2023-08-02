@@ -1,14 +1,31 @@
-import { ImageProps } from '@chakra-ui/react';
+/* eslint-disable no-shadow */
+/* eslint-disable no-unused-vars */
+export enum Category {
+  Furniture = 'Furniture',
+  Food = 'Food',
+}
+
+export enum FurnitureSubCategory {
+  Sofa = 'Sofa',
+  Chair = 'Chair',
+  Lamp = 'Lamp',
+}
+
+export enum FoodSubCategory {
+  Fruits = 'Fruits',
+  Vegetables = 'Vegetables',
+}
 
 export type Product = {
   id: string;
   label: string;
-  value: string;
   price: number;
-  image?: ImageProps;
+  image: string;
   description: string;
   highlighted?: boolean;
   discounted?: boolean;
+  category: Category;
+  subCategory: FurnitureSubCategory | FoodSubCategory;
 };
 
 export type ShoppingCart = {

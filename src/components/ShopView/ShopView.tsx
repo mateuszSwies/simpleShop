@@ -1,20 +1,7 @@
 import { Box, Flex, Heading, Stack, Text, Grid } from '@chakra-ui/react';
 import { useState } from 'react';
 import ProductCard from '@/components/ProductCard';
-
-// Import komponentu Card, który stworzysz później
-// import Card from './Card';
-
-const categories = [
-  {
-    name: 'Category 1',
-    subcategories: ['SubCategory 1.1', 'SubCategory 1.2', 'SubCategory 1.3'],
-  },
-  {
-    name: 'Category 2',
-    subcategories: ['SubCategory 2.1', 'SubCategory 2.2'],
-  },
-];
+import { categories, shopProducts } from '@/constants/mocks';
 
 const ShopView = () => {
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -94,11 +81,10 @@ const ShopView = () => {
         {/* Dodaj tu breadcrumbs */}
         <Text mt={2}>{`Jesteś w: ${selectedSubcategory}`}</Text>
         <Grid templateColumns="repeat(3, 1fr)" gap={6}>
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
+          {shopProducts &&
+            shopProducts.map(product => (
+              <ProductCard key={product.id} product={product} />
+            ))}
         </Grid>
       </Box>
     </Flex>

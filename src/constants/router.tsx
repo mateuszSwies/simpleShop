@@ -5,6 +5,7 @@ import Home from '@/screens/Home';
 import Profile from '@/screens/Profile';
 import RegistrationForm from '@/components/RegistrationForm';
 import Shop from '@/screens/Shop';
+import ShoppingCart from '@/components/ShoppingCart';
 
 const router = createBrowserRouter([
   {
@@ -20,7 +21,7 @@ const router = createBrowserRouter([
     path: '/cart',
     element: (
       <Layout>
-        <div>cart</div>
+        <ShoppingCart />
       </Layout>
     ),
     errorElement: <ErrorPage />,

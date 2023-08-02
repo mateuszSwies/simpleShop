@@ -1,20 +1,44 @@
-import { Box, Flex, Heading, Stack, Text, Grid } from '@chakra-ui/react';
-import { useState } from 'react';
+import {
+  Box,
+  Flex,
+  Heading,
+  Stack,
+  Text,
+  Grid,
+  useToast,
+} from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
 import ProductCard from '@/components/ProductCard';
-import { categories, shopProducts } from '@/constants/mocks';
+import { categories } from '@/constants/mocks';
+import { Product } from '@/types';
 
 const ShopView = () => {
   const [selectedCategory, setSelectedCategory] = useState('');
-  const [selectedSubcategory, setSelectedSubcategory] = useState('');
+  const [shopProducts, setShopProducts] = useState<Product[]>([]);
+  const toast = useToast();
 
   const handleCategoryClick = (category: string) => {
     if (selectedCategory === category) {
       setSelectedCategory('');
     } else {
       setSelectedCategory(category);
-      //   setSelectedSubcategory('');
     }
   };
+
+  useEffect(() => {
+    fetch('https://fakestoreapi.com/products')
+      .then(res => res.json())
+      .then(json => setShopProducts(json))
+      .catch(() =>
+        toast({
+          title: 'OOPS!',
+          description: 'Something went wrong, try again in a while.',
+          status: 'error',
+          duration: 4000,
+          isClosable: true,
+        })
+      );
+  }, []);
 
   return (
     <Flex p={4} justifyContent="space-between">
@@ -25,48 +49,16 @@ const ShopView = () => {
             <Box
               key={Math.random()}
               cursor="pointer"
-              bg={
-                selectedCategory === category.name ? 'gray.200' : 'transparent'
-              }
+              bg={selectedCategory === category ? 'gray.200' : 'transparent'}
               p={2}
               borderRadius="md"
-              onClick={() => handleCategoryClick(category.name)}
+              onClick={() => handleCategoryClick(category)}
             >
               <Text
-                fontWeight={
-                  selectedCategory === category.name ? 'bold' : 'normal'
-                }
+                fontWeight={selectedCategory === category ? 'bold' : 'normal'}
               >
-                {category.name}
+                {category}
               </Text>
-              {selectedCategory === category.name && (
-                <Stack pl={4} mt={2}>
-                  {category.subcategories.map(subcategory => (
-                    <Box
-                      key={subcategory}
-                      cursor="pointer"
-                      bg={
-                        selectedSubcategory === subcategory
-                          ? 'gray.200'
-                          : 'transparent'
-                      }
-                      p={1}
-                      borderRadius="md"
-                      onClick={() => setSelectedSubcategory(subcategory)}
-                    >
-                      <Text
-                        fontWeight={
-                          selectedSubcategory === subcategory
-                            ? 'bold'
-                            : 'normal'
-                        }
-                      >
-                        {subcategory}
-                      </Text>
-                    </Box>
-                  ))}
-                </Stack>
-              )}
             </Box>
           ))}
         </Stack>
@@ -79,7 +71,7 @@ const ShopView = () => {
           {/* Dodaj tu opcje sortowania */}
         </Flex>
         {/* Dodaj tu breadcrumbs */}
-        <Text mt={2}>{`Jesteś w: ${selectedSubcategory}`}</Text>
+        <Text mt={2}>{`Jesteś w: ${selectedCategory}`}</Text>
         <Grid templateColumns="repeat(3, 1fr)" gap={6}>
           {shopProducts &&
             shopProducts.map(product => (

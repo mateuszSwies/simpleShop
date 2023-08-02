@@ -1,39 +1,24 @@
-import {
-  Category,
-  FoodSubCategory,
-  FurnitureSubCategory,
-  Product,
-} from '@/types';
+import { Category } from '@/types';
 
 export const categories = [
-  {
-    name: Category.Furniture,
-    subcategories: [
-      FurnitureSubCategory.Chair,
-      FurnitureSubCategory.Lamp,
-      FurnitureSubCategory.Sofa,
-    ],
-  },
-  {
-    name: Category.Food,
-    subcategories: [FoodSubCategory.Fruits, FoodSubCategory.Vegetables],
-  },
+  Category.Electronics,
+  Category.Jewelery,
+  Category.MensClothing,
+  Category.WomensClothing,
 ];
 
-export const shopProducts: Product[] = [
+export const shopProducts = [
   {
     id: '1',
-    label: 'Beautiful sofa',
+    title: 'Beautiful sofa',
     price: 150,
     image:
       'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',
     description: `This sofa is perfect for modern tropical spaces, baroque inspired
       spaces, earthy toned spaces and for people who love a chic design
       with a sprinkle of vintage design.`,
-    highlighted: false,
-    discounted: false,
-    category: Category.Furniture,
-    subCategory: FurnitureSubCategory.Sofa,
+    // category: Category.Furniture,
+    // subCategory: FurnitureSubCategory.Sofa,
   },
   {
     id: '2',
@@ -45,8 +30,8 @@ export const shopProducts: Product[] = [
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make ",
     highlighted: false,
     discounted: false,
-    category: Category.Furniture,
-    subCategory: FurnitureSubCategory.Chair,
+    // category: Category.Furniture,
+    // subCategory: FurnitureSubCategory.Chair,
   },
   {
     id: '3',
@@ -58,8 +43,8 @@ export const shopProducts: Product[] = [
       'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is th',
     highlighted: false,
     discounted: false,
-    category: Category.Furniture,
-    subCategory: FurnitureSubCategory.Chair,
+    // category: Category.Furniture,
+    // subCategory: FurnitureSubCategory.Chair,
   },
   {
     id: '4',
@@ -71,8 +56,8 @@ export const shopProducts: Product[] = [
       "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are goin",
     highlighted: false,
     discounted: false,
-    category: Category.Furniture,
-    subCategory: FurnitureSubCategory.Chair,
+    // category: Category.Furniture,
+    // subCategory: FurnitureSubCategory.Chair,
   },
   {
     id: '5',
@@ -84,8 +69,8 @@ export const shopProducts: Product[] = [
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,",
     highlighted: false,
     discounted: false,
-    category: Category.Furniture,
-    subCategory: FurnitureSubCategory.Sofa,
+    // category: Category.Furniture,
+    // subCategory: FurnitureSubCategory.Sofa,
   },
   {
     id: '6',
@@ -97,8 +82,8 @@ export const shopProducts: Product[] = [
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,",
     highlighted: false,
     discounted: false,
-    category: Category.Furniture,
-    subCategory: FurnitureSubCategory.Lamp,
+    // category: Category.Furniture,
+    // subCategory: FurnitureSubCategory.Lamp,
   },
   {
     id: '7',
@@ -110,7 +95,7 @@ export const shopProducts: Product[] = [
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,",
     highlighted: false,
     discounted: false,
-    category: Category.Furniture,
-    subCategory: FurnitureSubCategory.Sofa,
+    // category: Category.Furniture,
+    // subCategory: FurnitureSubCategory.Sofa,
   },
 ];

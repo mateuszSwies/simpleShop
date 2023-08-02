@@ -34,5 +34,6 @@ module.exports = {
     'arrow-parens': 'off',
     'implicit-arrow-linebreak': 'off',
     'operator-linebreak': 'off',
+    'function-paren-newline': 'off',
   },
 };

@@ -15,7 +15,7 @@ type ShoppingCartItemProps = {
 };
 
 const ShoppingCartItem = ({ item }: ShoppingCartItemProps) => {
-  const { id, description, label, price, image } = item;
+  const { id, description, title, price, image } = item;
 
   return (
     <Card
@@ -34,7 +34,7 @@ const ShoppingCartItem = ({ item }: ShoppingCartItemProps) => {
 
       <Stack>
         <CardBody>
-          <Heading size="md">{label}</Heading>
+          <Heading size="md">{title}</Heading>
 
           <Text py="2">{description}</Text>
           <Text py="2">{price}</Text>

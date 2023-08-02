@@ -1,31 +1,23 @@
 /* eslint-disable no-shadow */
 /* eslint-disable no-unused-vars */
 export enum Category {
-  Furniture = 'Furniture',
-  Food = 'Food',
-}
-
-export enum FurnitureSubCategory {
-  Sofa = 'Sofa',
-  Chair = 'Chair',
-  Lamp = 'Lamp',
-}
-
-export enum FoodSubCategory {
-  Fruits = 'Fruits',
-  Vegetables = 'Vegetables',
+  MensClothing = "men's clothing",
+  Jewelery = 'jewelery',
+  Electronics = 'electronics',
+  WomensClothing = "women's clothing",
 }
 
 export type Product = {
   id: string;
-  label: string;
+  title: string;
   price: number;
   image: string;
   description: string;
-  highlighted?: boolean;
-  discounted?: boolean;
   category: Category;
-  subCategory: FurnitureSubCategory | FoodSubCategory;
+  rating: {
+    rate: number;
+    count: number;
+  };
 };
 
 export type ShoppingCart = {

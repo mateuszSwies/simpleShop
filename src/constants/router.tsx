@@ -6,6 +6,7 @@ import Profile from '@/screens/Profile';
 import RegistrationForm from '@/components/RegistrationForm';
 import Shop from '@/screens/Shop';
 import ShoppingCart from '@/components/ShoppingCart';
+import Promotions from '@/screens/Promotions';
 
 const router = createBrowserRouter([
   {
@@ -57,7 +58,7 @@ const router = createBrowserRouter([
     path: '/promotions',
     element: (
       <Layout>
-        <div>promotions</div>
+        <Promotions />
       </Layout>
     ),
     errorElement: <ErrorPage />,

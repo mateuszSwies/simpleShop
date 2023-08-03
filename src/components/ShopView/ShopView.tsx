@@ -6,34 +6,33 @@ import {
   Text,
   Grid,
   useToast,
+  Select,
 } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, ChangeEvent } from 'react';
 import ProductCard from '@/components/ProductCard';
 import { categories } from '@/constants/mocks';
-import { Product } from '@/types';
+import { Category, Product } from '@/types';
 import ProductModal from '../ProductModal/ProductModal';
+import sortProducts from '@/helpers/shopProductSorter';
+import filterProductsByCategory from '@/helpers/filterProductsByCategory';
 
 const ShopView = () => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [shopProducts, setShopProducts] = useState<Product[]>([]);
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [selectedProductId, setSelectedProductId] = useState('');
   const [productToShowMore, setProductToShowMore] = useState<Product>();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toast = useToast();
 
-  const handleCategoryClick = (category: string) => {
-    if (selectedCategory === category) {
-      setSelectedCategory('');
-    } else {
-      setSelectedCategory(category);
-    }
-  };
-
   useEffect(() => {
     fetch('https://fakestoreapi.com/products')
       .then(res => res.json())
-      .then(json => setShopProducts(json))
+      .then(json => {
+        setShopProducts(json);
+        setFilteredProducts(json);
+      })
       .catch(() =>
         toast({
           title: 'OOPS!',
@@ -52,7 +51,20 @@ const ShopView = () => {
       );
       setProductToShowMore(matchingProduct);
     }
-  }, [selectedProductId]);
+  }, [selectedProductId, shopProducts]);
+
+  const handleCategoryClick = (category: Category) => {
+    setSelectedCategory(category);
+    if (category === null) {
+      setFilteredProducts(shopProducts);
+    } else {
+      const newFilteredProducts = filterProductsByCategory(
+        shopProducts,
+        category
+      );
+      setFilteredProducts(newFilteredProducts);
+    }
+  };
 
   const handleOnProductClick = (productId: string) => {
     setIsModalOpen(true);
@@ -61,6 +73,18 @@ const ShopView = () => {
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
+  };
+
+  const handleOnSortingSelect = (event: ChangeEvent<HTMLSelectElement>) => {
+    const newShopProductsList = sortProducts(
+      filteredProducts,
+      event.target.value
+    );
+    setFilteredProducts(newShopProductsList);
+  };
+
+  const capitalizeFirstLetter = (str: string) => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
   };
 
   return (
@@ -80,24 +104,27 @@ const ShopView = () => {
               <Text
                 fontWeight={selectedCategory === category ? 'bold' : 'normal'}
               >
-                {category}
+                {capitalizeFirstLetter(category)}
               </Text>
             </Box>
           ))}
         </Stack>
       </Box>
-
-      {/* Środek */}
       <Box width="80%">
-        <Flex justifyContent="space-between" alignItems="center">
-          <Heading>Sortowanie</Heading>
-          {/* Here goes sorting */}
+        <Flex justifyContent="center" alignItems="center" mb="5">
+          <Text mr="5">Sort by:</Text>
+          <Select w="xs" onChange={handleOnSortingSelect}>
+            <option value="nameASC">Name Ascending</option>
+            <option value="nameDESC">Name Descending</option>
+            <option value="priceASC">Price Ascending</option>
+            <option value="priceDESC">Price Descending</option>
+            <option value="category">Category</option>
+            <option value="rating">Rating</option>
+          </Select>
         </Flex>
-        {/* breadcrumbs ? */}
-        <Text mt={2}>{`Jesteś w: ${selectedCategory}`}</Text>
         <Grid templateColumns="repeat(3, 1fr)" gap={6}>
-          {shopProducts &&
-            shopProducts.map(product => (
+          {filteredProducts &&
+            filteredProducts.map(product => (
               <ProductCard
                 key={product.id}
                 product={product}

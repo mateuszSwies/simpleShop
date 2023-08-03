@@ -9,12 +9,14 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { Product } from '@/types';
+import useShoppingCartStore from '@/store/shoppingCartStore';
 
 type ShoppingCartItemProps = {
   item: Product;
 };
 
 const ShoppingCartItem = ({ item }: ShoppingCartItemProps) => {
+  const { removeFromCart } = useShoppingCartStore();
   const { id, description, title, price, image } = item;
 
   return (
@@ -23,13 +25,13 @@ const ShoppingCartItem = ({ item }: ShoppingCartItemProps) => {
       direction={{ base: 'column', sm: 'row' }}
       overflow="hidden"
       variant="outline"
+      w="100%"
     >
       <Image
-        objectFit="cover"
+        objectFit="contain"
         maxW={{ base: '100%', sm: '200px' }}
-        // src="https://images.unsplash.com/photo-1667489022797-ab608913feeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60"
         src={image}
-        alt="Caffe Latte"
+        alt={title}
       />
 
       <Stack>
@@ -37,12 +39,16 @@ const ShoppingCartItem = ({ item }: ShoppingCartItemProps) => {
           <Heading size="md">{title}</Heading>
 
           <Text py="2">{description}</Text>
-          <Text py="2">{price}</Text>
+          <Text py="2">{`$ ${price}`}</Text>
         </CardBody>
 
         <CardFooter>
-          <Button variant="solid" colorScheme="blue">
-            Add more
+          <Button
+            variant="solid"
+            colorScheme="red"
+            onClick={() => removeFromCart(item)}
+          >
+            Remove from cart
           </Button>
         </CardFooter>
       </Stack>

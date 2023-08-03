@@ -14,8 +14,8 @@ const ShoppingCartIcon = () => {
   return (
     <Box
       position="fixed"
-      bottom="3rem"
-      right="10vw"
+      top="85vh"
+      right="7%"
       zIndex="999"
       cursor="pointer"
       onClick={handleOnCartClick}

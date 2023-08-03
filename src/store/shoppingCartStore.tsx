@@ -25,25 +25,20 @@ const useShoppingCartStore = create<ShoppingCartStore>()(set => ({
     })),
   removeFromCart: item =>
     set(state => {
-      const newNumberOfProducts = state.numberOfProducts - 1;
-      const newTotalValue = state.shoppingCart.totalValue - item.price;
-      const newItems = state.shoppingCart.items.filter(
+      const updatedTotalValue = (
+        state.shoppingCart.totalValue - item.price
+      ).toFixed(2);
+      const updatedItems = state.shoppingCart.items.filter(
         cartItem => cartItem.id !== item.id
       );
 
-      // We check whether the number of products will remain greater
-      // than or equal to zero after the operation is performed
-      if (newNumberOfProducts >= 0) {
-        return {
-          numberOfProduct: newNumberOfProducts,
-          shoppingCart: {
-            items: newItems,
-            totalValue: newTotalValue,
-          },
-        };
-      }
-      // If the number of products falls below zero, we return the current state unchanged
-      return state;
+      return {
+        numberOfProducts: state.numberOfProducts - 1,
+        shoppingCart: {
+          items: updatedItems,
+          totalValue: parseFloat(updatedTotalValue),
+        },
+      };
     }),
 }));
 

@@ -7,10 +7,14 @@ const ShoppingCart = () => {
   const { items, totalValue } = shoppingCart;
 
   return (
-    <Flex w="100%" align="center" flexDir="column" gap="7">
-      <Heading>Here is your shopping cart</Heading>
+    <Flex w="100%" align="center" flexDir="column" gap="7" marginBottom="10">
+      <Heading mt="7">Here is your shopping cart</Heading>
       {items ? (
-        items.map(item => <ShoppingCartItem key={item.id} item={item} />)
+        <Flex align="center" flexDir="column" w="90%" gap="6">
+          {items.map(item => (
+            <ShoppingCartItem key={item.id} item={item} />
+          ))}
+        </Flex>
       ) : (
         <Text>Your cart is empty</Text>
       )}

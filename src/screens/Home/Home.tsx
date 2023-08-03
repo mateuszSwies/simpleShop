@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <>
       <Flex h="container.sm" justifyContent="center" alignItems="center">
-        <Heading as="h1" size="4xl" noOfLines={1}>
+        <Heading as="h1" size={{ base: 'sm', md: 'xl', xl: '4xl' }}>
           Welcome in my simple shop.
         </Heading>
       </Flex>

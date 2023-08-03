@@ -17,7 +17,10 @@ const MainMenu = () => {
   const { loggedUser, isLoggedIn } = useAuthenticationStore();
 
   return (
-    <Flex justifyContent={{ base: 'flex-end', md: 'space-around' }}>
+    <Flex
+      justifyContent={{ base: 'flex-end', md: 'space-around' }}
+      width="100%"
+    >
       <Box display={{ base: 'block', md: 'none' }} position="relative">
         <Menu>
           <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
@@ -25,7 +28,7 @@ const MainMenu = () => {
           </MenuButton>
           <MenuList>
             <MenuItem>
-              <Button variant="ghost" as={Link} to="/home" color="black">
+              <Button variant="ghost" as={Link} to="/" color="black">
                 Home
               </Button>
             </MenuItem>

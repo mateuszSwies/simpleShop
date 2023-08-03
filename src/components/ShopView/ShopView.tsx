@@ -11,10 +11,15 @@ import { useEffect, useState } from 'react';
 import ProductCard from '@/components/ProductCard';
 import { categories } from '@/constants/mocks';
 import { Product } from '@/types';
+import ProductModal from '../ProductModal/ProductModal';
 
 const ShopView = () => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [shopProducts, setShopProducts] = useState<Product[]>([]);
+  const [selectedProductId, setSelectedProductId] = useState('');
+  const [productToShowMore, setProductToShowMore] = useState<Product>();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const toast = useToast();
 
   const handleCategoryClick = (category: string) => {
@@ -39,6 +44,24 @@ const ShopView = () => {
         })
       );
   }, []);
+
+  useEffect(() => {
+    if (shopProducts) {
+      const matchingProduct = shopProducts.find(
+        product => product.id === selectedProductId
+      );
+      setProductToShowMore(matchingProduct);
+    }
+  }, [selectedProductId]);
+
+  const handleOnProductClick = (productId: string) => {
+    setIsModalOpen(true);
+    setSelectedProductId(productId);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <Flex p={4} justifyContent="space-between">
@@ -68,17 +91,28 @@ const ShopView = () => {
       <Box width="80%">
         <Flex justifyContent="space-between" alignItems="center">
           <Heading>Sortowanie</Heading>
-          {/* Dodaj tu opcje sortowania */}
+          {/* Here goes sorting */}
         </Flex>
-        {/* Dodaj tu breadcrumbs */}
+        {/* breadcrumbs ? */}
         <Text mt={2}>{`Jesteś w: ${selectedCategory}`}</Text>
         <Grid templateColumns="repeat(3, 1fr)" gap={6}>
           {shopProducts &&
             shopProducts.map(product => (
-              <ProductCard key={product.id} product={product} />
+              <ProductCard
+                key={product.id}
+                product={product}
+                onProductClick={handleOnProductClick}
+              />
             ))}
         </Grid>
       </Box>
+      {productToShowMore && (
+        <ProductModal
+          item={productToShowMore}
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+        />
+      )}
     </Flex>
   );
 };

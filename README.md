@@ -1,5 +1,7 @@
 # My Simple Shop
 
+PROJECT IS STILL IN PROGRESS
+
 Welcome to **My Simple Shop**! This is a modern web application built with cutting-edge technologies to provide you with an amazing shopping experience.
 
 ## Technologies Used
